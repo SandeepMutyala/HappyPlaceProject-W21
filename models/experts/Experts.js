@@ -11,6 +11,7 @@ const ExpertsSchema = new mongoose.Schema(
     email : { type: String, required: true},
     basePrice: { type: Number, default: 0 },
     address : { type: String},
+    url : { type: String}
   },
   { timestamps: true }
 )

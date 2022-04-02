@@ -17,7 +17,7 @@ const Experts = require('../models/experts/Experts')
         res.status(200).json(successResponse)
       } else {
         const errorResponse = {
-          message: 'No Orders found',
+          message: 'No Experts found',
           success: false,
         }
         res.status(404).json(errorResponse)
