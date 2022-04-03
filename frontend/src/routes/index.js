@@ -14,6 +14,7 @@ import Login from "../pages/UserManagement/Login/Login";
 import Signup from "../pages/UserManagement/Signup/Signup";
 import HomePage from "../Components/Homepage";
 import Logout from "../Components/Logout";
+import Feed from "../Components/Feed";
 
 function Routing() {
   const { initializeAuth, dispatch } = useContext(AppContext);
@@ -38,6 +39,10 @@ function Routing() {
     {
       pageLink: ROUTES.ERROR,
       view: Error,
+    },
+    {
+      pageLink: ROUTES.FEED,
+      view: Feed,
     },
   ];
 
