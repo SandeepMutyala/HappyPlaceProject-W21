@@ -20,6 +20,7 @@ import Logo from "../../assets/images/Logo.png";
 import { ROUTES } from "../../common/constants";
 import Settings from "./components/Settings";
 
+
 const Navbar = () => {
   const {
     state: { authenticated, currentUser },
@@ -123,9 +124,8 @@ const Navbar = () => {
               id="basic-button"
               aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-              // onClick={() => navigate(ROUTES.PROPERTY_LISTING)}
+              aria-expanded={open ? "true" : undefined}      
+              onClick={(handleClick) => navigate(ROUTES.LIST)}
               sx={{ my: 2, color: "black", display: "block" }}
             >
               View All Professionals

@@ -14,7 +14,8 @@ import Login from "../pages/UserManagement/Login/Login";
 import Signup from "../pages/UserManagement/Signup/Signup";
 import HomePage from "../Components/Homepage";
 import Logout from "../Components/Logout";
-import Feed from "../Components/Feed";
+import List from "../pages/Professionals/List";
+import SlotBooking from "../pages/Professionals/Slotbooking";
 
 function Routing() {
   const { initializeAuth, dispatch } = useContext(AppContext);
@@ -41,9 +42,14 @@ function Routing() {
       view: Error,
     },
     {
-      pageLink: ROUTES.FEED,
-      view: Feed,
+      pageLink: ROUTES.LIST,
+      view: List,
     },
+    {
+      pageLink: ROUTES.SLOTBOOKING,
+      view: SlotBooking,
+    },
+
   ];
 
   useEffect(() => {
