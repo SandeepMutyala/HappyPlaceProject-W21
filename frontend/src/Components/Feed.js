@@ -3,6 +3,10 @@ import NavigationBar from "./NavigationBar/Navbar";
 import Footer from "./Footer/Footer";
 import { Grid, Paper, List, ListItem, ListItemAvatar, ListItemText, Divider, Typography } from "@material-ui/core";
 import Avatar from '@mui/material/Avatar';
+import { ReactionBarSelector } from '@charkour/react-reactions';
+
+
+
 
 const Feed = () => {
 
@@ -23,10 +27,9 @@ return (
 
 <Grid>
 
-<Typography align="center"> My Feed </Typography>
     
 <Paper elevation={3} sx={{ width: '200px', height: '200px' }}>
-
+<Typography align="center" variant="h3" > My Feed </Typography>
 <List>
 
 <ListItem>
@@ -35,7 +38,12 @@ return (
 </Avatar>
 </ListItemAvatar>
 <ListItemText primary="Katie Reynolds" secondary="I joined a yoga class today ! Looking forward to feeling better !" />
+<ReactionBarSelector iconSize = "20px"> </ReactionBarSelector>
+
 </ListItem>
+
+
+
 
 <Divider variant="middle" />
 
@@ -45,7 +53,9 @@ return (
 </Avatar>
 </ListItemAvatar>
 <ListItemText primary="Janet Brek" secondary="I finally took a step towards my social anxiety and signed up for a dance class !" />
+<ReactionBarSelector iconSize = "20px"> </ReactionBarSelector>
 </ListItem>
+
 
 </List>
 </Paper>
