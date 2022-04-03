@@ -30,3 +30,19 @@ const Experts = require('../models/experts/Experts')
       res.status(500).json(errorResponse)
     }
   }
+
+  exports.bookExpert = async (req, res) => {
+    try{
+        const expertDetails = await Experts.findById(req.params.id);
+        res.status(200).json({
+          success: true,
+          expertDetails: expertDetails
+        })
+    }
+    catch {
+        res.status(500).json({
+            success: false,
+            message: "Error"
+          })
+    }
+  };
