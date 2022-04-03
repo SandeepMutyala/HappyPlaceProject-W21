@@ -10,7 +10,8 @@ export const ROUTES = {
   LOGOUT: "/logout",
   NOT_FOUND: "*",
   ERROR: "/error",
-  FEED: "/feed"
+  LIST:"/list",
+  SLOTBOOKING:"/slotbooking/:id"
 };
 
 /* Authentication */

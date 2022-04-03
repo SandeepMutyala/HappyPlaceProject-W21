@@ -1,0 +1,41 @@
+/* Author: Sai Sandeep Mutyala (B00872239) */
+
+.singlecard {
+    margin: 2%;
+    border-style: solid;
+    border-color: #555;
+    text-align: center;
+    padding-bottom: 2%;
+    margin-bottom: 15%;
+    margin-top: 15%;
+}
+
+.totalcard {
+    /* background-color: #000; */
+    border: 3px solid #555;
+    border-radius: 5px;
+  background-color: #f2f2f2;
+  /* padding: 20px; */
+  border-left: 10%;
+}
+.singlecard:hover {
+    cursor: pointer;
+    transform: scale(0.9);
+}
+
+.dateTime {
+    padding-top: 5%;
+}
+
+.bookbutton {
+    padding-top: 2%;
+    color: #555;
+    text-align: center;
+    justify-content: center;
+}
+
+/* .time {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+} */
