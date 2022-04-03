@@ -12,7 +12,8 @@ export const ROUTES = {
   ERROR: "/error",
   LIST:"/list",
   SLOTBOOKING:"/slotbooking/:id",
-  FEED: "/feed"
+  FEED: "/feed",
+  PAYMENTS: "/checkout/payments"
 };
 
 /* Authentication */

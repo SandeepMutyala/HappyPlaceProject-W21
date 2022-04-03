@@ -17,6 +17,7 @@ import Logout from "../Components/Logout";
 import List from "../pages/Professionals/List";
 import SlotBooking from "../pages/Professionals/Slotbooking";
 import Feed from "../Components/Feed";
+import Payments from "../pages/Payments/Payments";
 
 function Routing() {
   const { initializeAuth, dispatch } = useContext(AppContext);
@@ -53,6 +54,10 @@ function Routing() {
     {
       pageLink: ROUTES.SLOTBOOKING,
       view: SlotBooking,
+    },
+    {
+      pageLink: ROUTES.PAYMENTS,
+      view: Payments,
     },
 
   ];
