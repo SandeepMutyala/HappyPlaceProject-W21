@@ -11,7 +11,8 @@ export const ROUTES = {
   NOT_FOUND: "*",
   ERROR: "/error",
   LIST:"/list",
-  SLOTBOOKING:"/slotbooking/:id"
+  SLOTBOOKING:"/slotbooking/:id",
+  FEED: "/feed"
 };
 
 /* Authentication */
