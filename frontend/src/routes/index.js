@@ -18,6 +18,7 @@ import List from "../pages/Professionals/List";
 import SlotBooking from "../pages/Professionals/Slotbooking";
 import Feed from "../Components/Feed";
 import PaymentInfoForm from "../pages/Payment/PaymentInfoForm";
+import UserView from "../pages/UserProfile/UserView";
 
 function Routing() {
   const { initializeAuth, dispatch } = useContext(AppContext);
@@ -58,6 +59,10 @@ function Routing() {
     {
       pageLink: ROUTES.PAYMENTINFOFORM,
       view: PaymentInfoForm,
+    },
+    {
+      pageLink: ROUTES.PROFIE,
+      view: UserView,
     },
 
   ];
