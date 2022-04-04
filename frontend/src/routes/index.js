@@ -20,6 +20,7 @@ import Feed from "../Components/Feed";
 import Payments from "../pages/Payments/Payments";
 import PaymentInfoForm from "../pages/Payment/PaymentInfoForm";
 import OrderPlaced from "../pages/OrderPlaced/OrderPlaced";
+import UserView from "../pages/UserProfile/UserView";
 
 function Routing() {
   const { initializeAuth, dispatch } = useContext(AppContext);
@@ -70,6 +71,9 @@ function Routing() {
       view: OrderPlaced,
     },
 
+    {  pageLink: ROUTES.PROFIE,
+      view: UserView,
+    },
   ];
 
   useEffect(() => {

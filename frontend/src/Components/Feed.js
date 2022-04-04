@@ -9,7 +9,6 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../common/constants";
 
-
 const Feed = () => {
 
   const { state: { authenticated, currentUser }, } = useContext(AppContext);
@@ -19,24 +18,35 @@ const Feed = () => {
     navigate(ROUTES.HOMEPAGE);
   }
 
-
   useEffect(() => {
     if (!authenticated) {
      navigate(ROUTES.HOMEPAGE);
    }
 
-
-
 },[]);
 
 
-const [userDetails, setUserDetails] = useState(
+const [updates, setUpdates] = useState([
    
-  {"userName" : "Janet",
-   "url" : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-   "update" : "5pm",
-   "date" : "Apr - 2nd",
-  }
+  {"userId" : 1,
+   "userName" : "Amber Reily",
+   "url" : "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+   "text" : "I finally took a step towards my social anxiety and signed up for a dance class!",
+   "date" : "Apr - 2nd"
+  },
+  {"userId" : 2,
+  "userName" : "John Bowie",
+  "url" : "https://images.unsplash.com/photo-1590031905406-f18a426d772d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1244&q=80",
+  "text" : "I joined a yoga class today! Looking forward to feeling better!",
+  "date" : "Apr - 2nd"
+ },
+ {"userId" : 3,
+ "userName" : "Sophia Zen",
+ "url" : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+ "text" : "I started maintaining a journal! ",
+ "date" : "Apr - 2nd"
+}
+]
 )
 
 return (
@@ -51,29 +61,38 @@ return (
 
 <List>
 
-<ListItem>
-<ListItemAvatar style={{paddingRight: '20px'}}>
-<Avatar sx={{ width: '50px', height: '50px' }} src={userDetails.url}>
-</Avatar>
-</ListItemAvatar>
-<ListItemText primary="Katie Reynolds" secondary="I joined a yoga class today ! Looking forward to feeling better !" />
-<ReactionBarSelector iconSize = "20px"> </ReactionBarSelector>
+  {updates.map(update => (
+    <>
+    <ListItem key = {update.userId} >
+      <ListItemAvatar>
+      <Avatar sx={{ width: '50px', height: '50px' }} src={update.url}> </Avatar>
+      </ListItemAvatar>
+      <ListItemText>
+      <ListItemText primary={update.userName} secondary={update.text} />
+      </ListItemText>
+      <ReactionBarSelector reactions={ [{label: "Congrats!", node: <div>🎊</div>}, 
+                                        {label: "Fabulous!", node: <div>⭐</div>},
+                                        {label: "Perfect!", node: <div>💯</div>},
+                                        {label: "Awesome!", node: <div>🙌</div>},
+                                        {label: "Yaay!", node: <div>🥳</div>},
+                                        {label: "Applause for you!", node: <div>👏</div>},
+                                        {label: "Celebrations!", node: <div>🎊</div>},
+                                        {label: "You're strong! ", node: <div>💪</div>},
+                                        {label: "Amazing Job! ", node: <div>☺️</div>}
+                                      ]}
+      iconSize = '40px'>
+      </ReactionBarSelector>
+    </ListItem>
+    <Divider variant="middle" />
+    </>
 
-</ListItem>
+  )
+  )
 
-<Divider variant="middle" />
-
-<ListItem>
-<ListItemAvatar style={{paddingRight: '20px'}}>
-<Avatar sx={{ width: '50px', height: '50px' }} src={userDetails.url}>
-</Avatar>
-</ListItemAvatar>
-<ListItemText primary="Janet Brek" secondary="I finally took a step towards my social anxiety and signed up for a dance class !" />
-<ReactionBarSelector iconSize = "20px"> </ReactionBarSelector>
-
-</ListItem>
+  }
 
 </List>
+
 </Paper>
 </Grid>
 
