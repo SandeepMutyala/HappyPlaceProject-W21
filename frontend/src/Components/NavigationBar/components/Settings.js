@@ -78,7 +78,7 @@ const Settings = () => {
           </MenuItem>
           <Divider />
           <MenuItem
-            onClick={(event) => handleUserMenuClick(event, ROUTES.LOGOUT)}
+            onClick={(event) => handleUserMenuClick(event, ROUTES.PROFIE)}
           >
             <Typography textAlign="center">Profile</Typography>
           </MenuItem>

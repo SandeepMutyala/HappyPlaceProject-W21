@@ -64,7 +64,6 @@ function Routing() {
       pageLink: ROUTES.PROFIE,
       view: UserView,
     },
-
   ];
 
   useEffect(() => {
