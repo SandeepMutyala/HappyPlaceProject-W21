@@ -8,6 +8,7 @@ const passport = require("passport");
 const paymentRoute = require("./routes/paymentsRoute");
 const ordersRoute = require("./routes/ordersRoute");
 const app = express();
+const path = require("path");
 
 dotenv.config();
 
@@ -24,12 +25,18 @@ app.use("/api/experts", expertsRoute);
 app.use("/api/users", userRoute);
 app.use(paymentRoute);
 
-app.get("/", (req, res, next) => {
-  console.log("index route ");
-  res.status(200).json({
-    status: "success",
-  });
-});
+// app.get("/", (req, res, next) => {
+//   console.log("index route ");
+//   res.status(200).json({
+//     status: "success",
+//   });
+// });
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+app.get('/*',function(req, res){
+  res.sendFile(path.join(__dirname, '../frontend/build','index.html'));
+})
 
 app.get("*", function (req, res) {
   console.log("404 - ");
