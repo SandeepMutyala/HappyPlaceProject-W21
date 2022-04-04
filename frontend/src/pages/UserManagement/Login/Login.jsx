@@ -23,7 +23,7 @@ import { AppContext } from "../../../context/userContext";
 import * as ActionTypes from "../../../common/actionTypes";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ROUTES } from "../../../common/constants";
-
+import axios from 'axios';
 const Login = () => {
   const {
     state: { authenticated, currentUser, userId, authToken },
@@ -45,8 +45,7 @@ const Login = () => {
   const onSubmit = (data) => {
     const { email, password } = data;
     const loginCredentials = { email, password };
-    axios_api
-      .post("/users/userLogin", loginCredentials)
+    axios.post("/users/userLogin", loginCredentials)
       .then((response) => {
         if ((response.data.success = true)) {
           const { data } = response;

@@ -28,7 +28,7 @@ function SlotBooking() {
     let navigate = useNavigate();
     const [expertInfo, setExpertInfo] = useState({});
     const [startDate, setStartDate] = useState(new Date());
-    const apiUrl = 'http://localhost:5000/api/experts/bookProfessional/'+ params.id
+    const apiUrl = '/api/experts/bookProfessional/'+ params.id
     useEffect(() => {
         axios.get(apiUrl).then(
         (response) => {
