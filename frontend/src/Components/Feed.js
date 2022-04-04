@@ -30,13 +30,13 @@ const [updates, setUpdates] = useState([
    
   {"userId" : 1,
    "userName" : "Amber Reily",
-   "url" : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+   "url" : "https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
    "text" : "I finally took a step towards my social anxiety and signed up for a dance class!",
    "date" : "Apr - 2nd"
   },
   {"userId" : 2,
   "userName" : "John Bowie",
-  "url" : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  "url" : "https://images.unsplash.com/photo-1590031905406-f18a426d772d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1244&q=80",
   "text" : "I joined a yoga class today! Looking forward to feeling better!",
   "date" : "Apr - 2nd"
  },
@@ -63,14 +63,25 @@ return (
 
   {updates.map(update => (
     <>
-    <ListItem key = {update.userId}>
+    <ListItem key = {update.userId} >
       <ListItemAvatar>
       <Avatar sx={{ width: '50px', height: '50px' }} src={update.url}> </Avatar>
       </ListItemAvatar>
       <ListItemText>
       <ListItemText primary={update.userName} secondary={update.text} />
       </ListItemText>
-      <ReactionBarSelector iconSize = "20px"> </ReactionBarSelector>
+      <ReactionBarSelector reactions={ [{label: "Congrats!", node: <div>🎊</div>}, 
+                                        {label: "Fabulous!", node: <div>⭐</div>},
+                                        {label: "Perfect!", node: <div>💯</div>},
+                                        {label: "Awesome!", node: <div>🙌</div>},
+                                        {label: "Yaay!", node: <div>🥳</div>},
+                                        {label: "Applause for you!", node: <div>👏</div>},
+                                        {label: "Celebrations!", node: <div>🎊</div>},
+                                        {label: "You're strong! ", node: <div>💪</div>},
+                                        {label: "Amazing Job! ", node: <div>☺️</div>}
+                                      ]}
+      iconSize = '40px'>
+      </ReactionBarSelector>
     </ListItem>
     <Divider variant="middle" />
     </>
