@@ -2,7 +2,7 @@ const dotenv = require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const createCheckoutSession = async (req,res) => {
-    const domainUrl = 'http://localhost:3000';
+    const domainUrl = 'https://happy-place-team7.herokuapp.com';
     const {line_items, customer_email, delivery} = req.body;
     if(!line_items || !customer_email){
         res.status(400).send({
