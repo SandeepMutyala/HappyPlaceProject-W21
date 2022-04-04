@@ -20,7 +20,6 @@ import Logo from "../../assets/images/Logo.png";
 import { ROUTES } from "../../common/constants";
 import Settings from "./components/Settings";
 
-
 const Navbar = () => {
   const {
     state: { authenticated, currentUser },
@@ -98,21 +97,10 @@ const Navbar = () => {
               }}
             >
               <MenuItem onClick={() => navigate(ROUTES.PROPERTY_LISTING)}>
-                <Typography textAlign="center">Property Rental</Typography>
+                <Typography textAlign="center">Book Professionals</Typography>
               </MenuItem>
               <MenuItem onClick={() => navigate(ROUTES.VIEW_SERVICES)}>
-                <Typography textAlign="center">Services</Typography>
-              </MenuItem>
-              <MenuItem
-                onClick={() =>
-                  //console.log("test");
-                  navigate(ROUTES.ROOMMATE_FINDER)
-                }
-              >
-                <Typography textAlign="center">Roommate Finder</Typography>
-              </MenuItem>
-              <MenuItem onClick={() => navigate(ROUTES.VIEW_FAVORITES)}>
-                <Typography textAlign="center">Favorites</Typography>
+                <Typography textAlign="center">Feed</Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -124,7 +112,7 @@ const Navbar = () => {
               id="basic-button"
               aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}      
+              aria-expanded={open ? "true" : undefined}
               onClick={(handleClick) => navigate(ROUTES.LIST)}
               sx={{ my: 2, color: "black", display: "block" }}
             >
@@ -136,7 +124,7 @@ const Navbar = () => {
               id="basic-button"
               aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}      
+              aria-expanded={open ? "true" : undefined}
               onClick={(handleClick) => navigate(ROUTES.FEED)}
               sx={{ my: 2, color: "black", display: "block" }}
             >
@@ -156,7 +144,7 @@ const Navbar = () => {
               <Button
                 variant="contained"
                 sx={{
-                  backgroundColor: "#1C3988",
+                  backgroundColor: "#1f9264",
                   display: { md: "flex" },
                 }}
                 onClick={() => navigate(ROUTES.LOGIN)}
