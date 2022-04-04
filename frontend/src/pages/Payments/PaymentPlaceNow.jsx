@@ -20,7 +20,7 @@
  
  const useStyles = makeStyles({
      root: {
-       background: "#2979FF",
+       background: "#3f51b5",
        border: 0,
        color: 'white',
        height: 40,
@@ -28,7 +28,7 @@
        textTransform: 'none',
        fontWeight: 600,
        "&:hover": {
-         background: "#2196F3",
+         background: "#4e69d4",
          color: "#fff"
        }
      },

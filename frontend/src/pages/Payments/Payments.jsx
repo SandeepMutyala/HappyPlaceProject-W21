@@ -6,7 +6,7 @@
 
 
 
- import React, {useEffect} from 'react';
+ import React, {useEffect, useRef} from 'react';
  import Box from '@mui/material/Box';
  import Paper from '@mui/material/Paper';
  import Grid from '@mui/material/Grid';
@@ -15,12 +15,12 @@
  import {Card} from 'react-bootstrap';
  import Button from '@material-ui/core/Button';
  import {TextField} from '@material-ui/core';
- import { makeStyles } from '@material-ui/core/styles';
+ import { makeStyles, withStyles } from '@material-ui/core/styles';
  import Checkbox from "@material-ui/core/Checkbox";
  import FormControlLabel from "@material-ui/core/FormControlLabel";
  import styled from "styled-components";
  import InputLabel from '@mui/material/InputLabel';
- import MenuItem from '@mui/material/MenuItem';
+//  import MenuItem from '@mui/material/MenuItem';
  import FormControl from '@mui/material/FormControl';
  import Select from '@mui/material/Select';
  import { Country, State, City } from "country-state-city";
@@ -29,9 +29,13 @@
  import PaymentPlaceNow from './PaymentPlaceNow';
  import PropTypes from 'prop-types';
  import Navbar from '../../Components/NavigationBar/Navbar';
+ import MuMenuItem from "@material-ui/core/MenuItem";
  
- 
- 
+ const MenuItem = withStyles({
+    root: {
+      justifyContent: "flex-start"
+    }
+  })(MuMenuItem);
 //  const useStyles = makeStyles({
 //      root: {
 //        background: "#13878F",
@@ -71,6 +75,16 @@
  
  
  export default function Payments() {
+
+    let userDetails = useRef("");
+    
+    useEffect(() => {
+        if("userDetails" in localStorage){
+            userDetails.current = JSON.parse(localStorage.getItem("userDetails"));
+           
+        }
+
+    },[])
      // importing the payment method state
     //  const paymentMethodType = useSelector((state) => state.paymentMethodType.value);
      // localStorage.setItem("first name","Chandan")
@@ -90,6 +104,7 @@
          //     countryNameValue(`${countryCodeLocalStore}`);
          // }
      };
+     
  
      // Handles the value for first name
      const [firstNameValue,setFirstName] = React.useState("");
@@ -141,7 +156,7 @@
  
     
      
-     console.log(cityNameValue);
+     console.log(userDetails.current.firstName);
      return (
          <div >
                 <Navbar />                
@@ -153,22 +168,24 @@
                          justifyContent="center"
                          style={{ minHeight: '30vh' }} className="textFont"><h1>Payment Information</h1></Grid> 
                  <Box sx={{ flexGrow: 1, mx:8}} className="textFont" >
-                     <Grid container spacing={16} direction="row" justifyContent="center">
-                         <Grid item xs={12}  lg={4} md={5}>
+                     <Grid container spacing={20} direction="row" justifyContent="center">
+                         <Grid item xs={12}  lg={6} md={6}>
                              <h4>Billing Information</h4>
  
-                             <TextField label={"First Name"} variant="standard" disabled={checkBillingAddress} onChange={handleFirstName} value={firstNameValue} fullWidth required ></TextField>
+                             <TextField label={"First Name"} variant="standard" disabled={checkBillingAddress} onChange={handleFirstName} value={checkBillingAddress?userDetails.current.firstName:firstNameValue} fullWidth required ></TextField>
                              
-                             <TextField label={"Last Name"} variant="standard" disabled={checkBillingAddress} onChange={handleLastName} value={lastNameValue} fullWidth required></TextField>
+                             <TextField label={"Last Name"} variant="standard" disabled={checkBillingAddress} onChange={handleLastName} value={checkBillingAddress?userDetails.current.lastName:lastNameValue} fullWidth required></TextField>
  
-                             <Box component="span" sx={{ display: 'block' }}>
+                             {checkBillingAddress?<TextField label={"Country"} variant="standard" disabled={checkBillingAddress} value={"Canada"} fullWidth required></TextField>:<Box component="span" sx={{ display: 'block' }}>
                                 <FormControl variant="standard" size="small" fullWidth required>
                                     <InputLabel >Country</InputLabel>
                                     <Select
                                     value={countryNameValue}
                                     onChange={handleCountryName}
+                                    disabled={checkBillingAddress}
                                     label="Country"
                                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } }, }}
+                                    
                                     >
                                     <MenuItem value="">
                                         <em>None</em>
@@ -183,9 +200,9 @@
                                     
                                     </Select>
                                 </FormControl>  
-                            </Box>
+                            </Box>}
                              {/*State Dropdown*/}
-                             {<Box component="span" sx={{ display: 'block' }}>
+                             {checkBillingAddress?<TextField label={"State"} variant="standard" disabled={checkBillingAddress} value={userDetails.current.state} fullWidth required></TextField>:<Box component="span" sx={{ display: 'block' }}>
                                  <FormControl variant="standard" size="small" fullWidth required>
                                      <InputLabel >State</InputLabel>
                                      <Select
@@ -209,7 +226,7 @@
                                      </Select>
                                  </FormControl>  
                              </Box>}
-                             {(<Box component="span" sx={{ display: 'block' }}>
+                             {checkBillingAddress?<TextField label={"City"} variant="standard" disabled={checkBillingAddress} value={userDetails.current.city} fullWidth required></TextField>:(<Box component="span" sx={{ display: 'block' }}>
                                  <FormControl variant="standard" size="small" fullWidth required>
                                      <InputLabel >City</InputLabel>
                                      <Select
@@ -232,26 +249,25 @@
                                  </FormControl>  
                              </Box>)}
                              
-                             <TextField label="Street Address" variant="standard" disabled={checkBillingAddress} onChange={handleStAddress}  value={stAddressValue} fullWidth required></TextField>
+                             <TextField label="Street Address" variant="standard" disabled={checkBillingAddress} onChange={handleStAddress}  value={checkBillingAddress?userDetails.current.streetAddress:stAddressValue} fullWidth required></TextField>
                          
                              {/* <TextField label="City" variant="standard" disabled={checkBillingAddress} onChange={handleCityName} value={checkBillingAddress?shippingInfo.city:cityNameValue} fullWidth required></TextField> */}
                              
                              {/* <TextField label="State" variant="standard" disabled={checkBillingAddress} onChange={handleStateName} value={checkBillingAddress?shippingInfo.state:stateNameValue}  fullWidth required></TextField> */}
-                             zip
-                             <TextField label="Zip Code" type="number" variant="standard" disabled={checkBillingAddress} onChange={handleZipCode} value={zipCodeValue} fullWidth required></TextField>
+                             <TextField label="Zip Code" type="number" variant="standard" disabled={checkBillingAddress} onChange={handleZipCode} value={checkBillingAddress?userDetails.current.zipCode:zipCodeValue} fullWidth required></TextField>
                              
  
                              <Box component="span" sx={{ display: 'block', mt:2 }}>
  
                                  <FormControlLabel  control={<Checkbox checked={checkBillingAddress} defaultChecked onChange={handleChange} style={{
-                                 color: "#13878F"
+                                 color: "#2979FF"
                                  }} />} label="Your billing address same as your shipping address?" />
  
  
                              </Box>
                          
                          </Grid>
-                         <Grid item xs={12}  lg={4} md={5}>
+                         <Grid item xs={12}  lg={6} md={6}>
                              <PaymentPlaceNow checkBillingAddress={checkBillingAddress} firstNameValue={firstNameValue} lastNameValue={lastNameValue} 
                              stAddressValue={stAddressValue} cityNameValue={cityNameValue} stateNameValue={stateNameValue} zipCodeValue={zipCodeValue} 
                              countryNameValue={countryNameValue} ></PaymentPlaceNow>
