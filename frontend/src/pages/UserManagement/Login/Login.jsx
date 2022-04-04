@@ -45,7 +45,7 @@ const Login = () => {
   const onSubmit = (data) => {
     const { email, password } = data;
     const loginCredentials = { email, password };
-    axios.post("/users/userLogin", loginCredentials)
+    axios.post("/api/users/userLogin", loginCredentials)
       .then((response) => {
         if ((response.data.success = true)) {
           const { data } = response;

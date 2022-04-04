@@ -49,7 +49,7 @@ const Signup = () => {
       password,
       confirmPassword,
     };
-    axios.post("/users/userRegistration", registrationDetails)
+    axios.post("/api/users/userRegistration", registrationDetails)
       .then((response) => {
         if ((response.data.success = true)) {
           toast.success(response?.data?.message);
