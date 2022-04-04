@@ -28,7 +28,7 @@ function SlotBooking() {
     let navigate = useNavigate();
     const [expertInfo, setExpertInfo] = useState({});
     const [startDate, setStartDate] = useState(new Date());
-    const apiUrl = 'http://localhost:5000/api/experts/bookProfessional/'+ params.id
+    const apiUrl = '/api/experts/bookProfessional/'+ params.id
     useEffect(() => {
         axios.get(apiUrl).then(
         (response) => {
@@ -50,7 +50,8 @@ function SlotBooking() {
             professionalMail: expertInfo.email,
             professionalAddress: expertInfo.address,
             consulatationCharge: expertInfo.basePrice,
-            appointmentDataAndTime: dateTime
+            appointmentDataAndTime: dateTime,
+            professionalProfileImg: expertInfo.url
             }
         localStorage.setItem("bookingDetails", JSON.stringify(itemData))
         navigate(ROUTES.PAYMENTINFOFORM)

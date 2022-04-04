@@ -6,7 +6,7 @@ import Footer from "./Footer/Footer";
 const Homepage = () => {
   return (
     <>
-      <NavigationBar />({" "}
+      <NavigationBar />
       <div>
         <div className={styles.banner}>
           <div className={styles.twoSection}></div>

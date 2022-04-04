@@ -19,7 +19,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { toast } from "react-toastify";
 import axios_api from "../../../common/axios";
 import { ROUTES } from "../../../common/constants";
-
+import axios from 'axios';
 const Signup = () => {
   const {
     state: { authenticated },
@@ -49,8 +49,7 @@ const Signup = () => {
       password,
       confirmPassword,
     };
-    axios_api
-      .post("/users/userRegistration", registrationDetails)
+    axios.post("/api/users/userRegistration", registrationDetails)
       .then((response) => {
         if ((response.data.success = true)) {
           toast.success(response?.data?.message);

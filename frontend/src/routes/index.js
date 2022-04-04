@@ -17,7 +17,9 @@ import Logout from "../Components/Logout";
 import List from "../pages/Professionals/List";
 import SlotBooking from "../pages/Professionals/Slotbooking";
 import Feed from "../Components/Feed";
+import Payments from "../pages/Payments/Payments";
 import PaymentInfoForm from "../pages/Payment/PaymentInfoForm";
+import OrderPlaced from "../pages/OrderPlaced/OrderPlaced";
 import UserView from "../pages/UserProfile/UserView";
 
 function Routing() {
@@ -57,11 +59,19 @@ function Routing() {
       view: SlotBooking,
     },
     {
+      pageLink: ROUTES.PAYMENTS,
+      view: Payments,
+    },
+    {
       pageLink: ROUTES.PAYMENTINFOFORM,
       view: PaymentInfoForm,
     },
     {
-      pageLink: ROUTES.PROFIE,
+      pageLink: ROUTES.ORDERPLACED,
+      view: OrderPlaced,
+    },
+
+    {  pageLink: ROUTES.PROFIE,
       view: UserView,
     },
   ];

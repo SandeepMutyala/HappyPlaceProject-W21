@@ -11,7 +11,8 @@ import Radio from "@material-ui/core/Radio";
 import Button from "@material-ui/core/Button";
 import Navbar from "../../Components/NavigationBar/Navbar";
 import './PaymentForm.css';
-
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from '../../common/constants';
 
 const defaultValues = {
     firstname: "",
@@ -26,7 +27,7 @@ const defaultValues = {
   };
 
 const PaymentInfoForm=() => {
-
+    let navigate = useNavigate();
     const [formValues, setFormValues] = useState(defaultValues);
     const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -51,6 +52,7 @@ const PaymentInfoForm=() => {
         }
     localStorage.setItem("userDetails", JSON.stringify(userData))
       alert('Your information got posted!')
+      navigate(ROUTES.PAYMENTS);
   };
 
 

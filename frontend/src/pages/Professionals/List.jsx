@@ -29,7 +29,7 @@ function List() {
             if (!authenticated) {
               navigate(ROUTES.HOMEPAGE);
             }
-        axios.get("http://localhost:5000/api/experts/displayProfessionals")
+        axios.get("/api/experts/displayProfessionals")
         .then((response) => {
             setList(response.data.experts);
         })

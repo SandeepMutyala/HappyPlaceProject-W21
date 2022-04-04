@@ -29,7 +29,7 @@ const pageStyle = {
 
 export default function AppFooter() {
   return (
-    <Typography component="footer" sx={{ display: "flex", bgcolor: "#274596" }}>
+    <Typography component="footer" sx={{ display: "flex", bgcolor: "#1f9264" }}>
       <Container sx={{ my: 8, display: "flex", flexDirection: "column" }}>
         <Grid container direction="column" justifyContent="flex-end">
           <Grid item sx={{ display: "flex", justifyContent: "center" }}>
