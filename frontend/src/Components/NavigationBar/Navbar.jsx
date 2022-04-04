@@ -128,7 +128,19 @@ const Navbar = () => {
               onClick={(handleClick) => navigate(ROUTES.LIST)}
               sx={{ my: 2, color: "black", display: "block" }}
             >
-              View All Professionals
+              Book Professionals
+            </Button>
+          </Box>
+          <Box sx={{ flexGrow: 18, display: { xs: "none", md: "flex" } }}>
+            <Button
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}      
+              onClick={(handleClick) => navigate(ROUTES.FEED)}
+              sx={{ my: 2, color: "black", display: "block" }}
+            >
+              Feed
             </Button>
           </Box>
           <Box

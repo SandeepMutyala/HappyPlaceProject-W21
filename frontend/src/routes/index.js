@@ -18,6 +18,8 @@ import List from "../pages/Professionals/List";
 import SlotBooking from "../pages/Professionals/Slotbooking";
 import Feed from "../Components/Feed";
 import Payments from "../pages/Payments/Payments";
+import PaymentInfoForm from "../pages/Payment/PaymentInfoForm";
+import OrderPlaced from "../pages/OrderPlaced/OrderPlaced";
 
 function Routing() {
   const { initializeAuth, dispatch } = useContext(AppContext);
@@ -58,6 +60,14 @@ function Routing() {
     {
       pageLink: ROUTES.PAYMENTS,
       view: Payments,
+    },
+    {
+      pageLink: ROUTES.PAYMENTINFOFORM,
+      view: PaymentInfoForm,
+    },
+    {
+      pageLink: ROUTES.ORDERPLACED,
+      view: OrderPlaced,
     },
 
   ];

@@ -5,21 +5,22 @@
  */
 
 
- import React from 'react'
+ import React, {useState} from 'react'
  import {Card} from 'react-bootstrap';
  import Radio from '@mui/material/Radio';
  import RadioGroup from '@mui/material/RadioGroup';
- import { teal } from '@mui/material/colors';
+ import { blue } from '@mui/material/colors';
  import FormControl from '@mui/material/FormControl';
  import FormControlLabel from "@material-ui/core/FormControlLabel";
  import Button from '@material-ui/core/Button';
  import Box from '@mui/material/Box';
  import { makeStyles } from '@material-ui/core/styles';
  import axios from 'axios';
+ import './Payments.css';
  
  const useStyles = makeStyles({
      root: {
-       background: "#13878F",
+       background: "#2979FF",
        border: 0,
        color: 'white',
        height: 40,
@@ -27,7 +28,7 @@
        textTransform: 'none',
        fontWeight: 600,
        "&:hover": {
-         background: "#11999E",
+         background: "#2196F3",
          color: "#fff"
        }
      },
@@ -36,63 +37,125 @@
 
 let paymentMethodType = "Credit/Debit Card";
  
- export default function PaymentPlaceNow() {
+ export default function PaymentPlaceNow(props) {
  
 
-     const checkoutAmount = JSON.parse(localStorage.getItem("checkoutAmount"));
-     const cartItemsData = JSON.parse(localStorage.getItem("cartItems"));
-     const customerEmail = localStorage.getItem("Email");
-     const buttonStyle = useStyles();
-     let authToken = "";
- 
-     if(localStorage.getItem("token")!=='undefined'){
-         authToken = localStorage.getItem("token");
-     }
-     const [radioButtonSelect,setRadioButton] = React.useState('Standard');
+    //  const cartItemsData = JSON.parse(localStorage.getItem("bookingDetails"));
+    
+    let userDetails ;
+    let bookingDetails;
+    let charges;
+    const [toggle,setToggle] = useState(0);
+    
+    
+    const buttonStyle = useStyles();
+    let authToken = "";
+
+    if(localStorage.getItem("token")!=='undefined'){
+        authToken = localStorage.getItem("token");
+    }
+    const [radioButtonSelect,setRadioButton] = React.useState('Standard');
      // const handleRadioButton =(event) => {
      //     dispatch(paymentType(event.target.value));
      // }
-     let line_items = [];
-     for(let idx=0;idx<cartItemsData.CartItems.length;idx++) {
-         let items = {
-             "quantity": cartItemsData.CartItems[idx].quantity,
-             "price_data": {
-                 "currency": "cad",
-                 "unit_amount": cartItemsData.CartItems[idx].Price*100,
-                 "product_data": {
-                     "name": cartItemsData.CartItems[idx].Name,
-                     "description": "Product description",
-                     "images": [
-                         cartItemsData.CartItems[idx].ImageURL
-                     ]
-                 },
-                 
-             },
-             "tax_rates": ["txr_1KiDYRLF0IW9HE4HAkINXJr6"]
-         }
-         line_items.push(items);
-     }
+    
+    
+    
      
-     let data = {
-         line_items,
-         "customer_email": "abcd.Dal.ca",
-         "delivery": 10
-     };
+     
+     
  
-     console.log(authToken);
+     console.log("togggle",props.checkBillingAddress)
      async function handlePlaceOrderBtn(){
- 
+        if("userDetails" in localStorage){
+            userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+        }
+        if("bookingDetails" in localStorage){
+            bookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
+            
+
+        }
+        let line_items = [];
+        let fullName = bookingDetails.professionalFirstName + " " + bookingDetails.professionalLastName;
+        
+        charges =  bookingDetails.consulatationCharge*100
+        let items = {
+            "quantity": 1,
+            "price_data": {
+                "currency": "cad",
+                "unit_amount": charges,
+                "product_data": {
+                    "name": fullName,
+                    "description": "Doctor",
+                    "images": [
+                        bookingDetails.professionalProfileImg
+                    ]
+                },
+            },
+            "tax_rates": ["txr_1KiDYRLF0IW9HE4HAkINXJr6"]
+        }
+        line_items.push(items);
+        let data = {
+            line_items,
+            "customer_email": "abcd@Dal.ca",
+            "delivery": 10
+        };
+        let billingAddress;
+        
+        if(props.checkBillingAddress === false){
+            
+            let firstName = props.firstNameValue;
+            let lastName = props.lastNameValue;
+            let streetAddress = props.stAddressValue;
+            let city = props.cityNameValue;
+            let state = props.stateNameValue;
+            let country = props.countryNameValue;
+            let zipCode = props.zipCodeValue;
+            billingAddress = {
+                firstName,
+                lastName,
+                streetAddress,
+                city,
+                state,
+                country,
+                zipCode
+            };
+        }else{
+            console.log("inside secodn");
+            let firstName = userDetails.firstName;
+            let lastName = userDetails.lastName;
+            let streetAddress = userDetails.streetAddress;
+            let city = userDetails.city;
+            let state = userDetails.state;
+            let zipCode = userDetails.zipCode;
+            billingAddress = {
+                firstName,
+                lastName,
+                streetAddress,
+                city,
+                state,
+                country: "Canada",
+                zipCode
+            }
+        }
+
+
+        let payload ={
+            totalAmount: charges,
+            billingAddress,
+            line_items
+        };
+        
          if(paymentMethodType==='Credit/Debit Card'){
-             console.log('inside');
              await axios.post('/api/v1/checkout/payment/create-checkout-session',data,{headers: {
-                 'Content-Type': 'application/json',
-                 "token": authToken
+                 'Content-Type': 'application/json'
                  }}).then((res) => {
                      console.log(res);
                  if(res && res.data){
                      console.log(res);
                      window.location.href = res.data.sessionUrl;
-                     localStorage.setItem("PaymentStatus", "Success");
+                     localStorage.setItem("payload", JSON.stringify(payload));
                  }
              });
          }
@@ -100,10 +163,10 @@ let paymentMethodType = "Credit/Debit Card";
      
      // console.log(paymentMethodType);
    return (
-     <Card className="textFont">
-         <Card.Header className="text-center"><h3>Payment Methods</h3></Card.Header>
+     <Card className="textFont" >
+         <Card.Header className="text-center" ><h4 >Payment Methods</h4></Card.Header>
          <Card.Body >
-             <Card.Title>Chose your payment method</Card.Title>
+             <Card.Title style={{textAlign: 'left'}}>Chose your payment method</Card.Title>
              <Card.Title>
                  <Box component="span" sx={{ display: 'block', mt:2 }}>
                      <FormControl>
@@ -115,18 +178,18 @@ let paymentMethodType = "Credit/Debit Card";
                              <FormControlLabel value="Credit/Debit Card" control={<Radio 
                              
                              sx={{
-                                 color: teal[800],
+                                 color: blue[800],
                                  '&.Mui-checked': {
-                                 color: teal[600],
+                                 color: blue[600],
                              },
                              }}
                              />} label="Credit/Debit Card" />
                              <FormControlLabel value="Paypal" control={<Radio 
                              
                              sx={{
-                                 color: teal[800],
+                                 color: blue[800],
                                  '&.Mui-checked': {
-                                 color: teal[600],
+                                 color: blue[600],
                              },
                              }} disabled={true}
                              />} label="Paypal (Currently Not Avaialble)" />
@@ -141,11 +204,11 @@ let paymentMethodType = "Credit/Debit Card";
          </Card.Body>
          <Card.Footer>
              
-             <Card.Title>Total Amount <span style={{float: "right"}}>Amount</span></Card.Title>
+             <Card.Title style={{textAlign: 'left'}}>Total Amount <span style={{float: "right"}}>Amount</span></Card.Title>
              
          </Card.Footer>
-         <Button variant="contained"
-         className={buttonStyle.root} onClick={handlePlaceOrderBtn} >Place Order</Button>
+         <Button variant="contained" className={buttonStyle.root}
+         onClick={handlePlaceOrderBtn} >Place Order</Button>
          {/* <Button variant="primary" className="placeButton" onClick={() => handleNewButton()}>Place Order</Button> */}
      </Card>
  

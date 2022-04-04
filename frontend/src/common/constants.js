@@ -13,7 +13,9 @@ export const ROUTES = {
   LIST:"/list",
   SLOTBOOKING:"/slotbooking/:id",
   FEED: "/feed",
-  PAYMENTS: "/checkout/payments"
+  PAYMENTS: "/checkout/payments",
+  PAYMENTINFOFORM:"/paymentinfoform",
+  ORDERPLACED: "/orderplaced"
 };
 
 /* Authentication */

@@ -32,40 +32,40 @@
  
  
  
- const useStyles = makeStyles({
-     root: {
-       background: "#13878F",
-       border: 0,
-       color: 'white',
-       height: 40,
-       fontSize: 18,
-       textTransform: 'none',
-       fontWeight: 600,
-       "&:hover": {
-         background: "#11999E",
-         color: "#fff"
-       }
-     },
-   });
+//  const useStyles = makeStyles({
+//      root: {
+//        background: "#13878F",
+//        border: 0,
+//        color: 'white',
+//        height: 40,
+//        fontSize: 18,
+//        textTransform: 'none',
+//        fontWeight: 600,
+//        "&:hover": {
+//          background: "#11999E",
+//          color: "#fff"
+//        }
+//      },
+//    });
  
- const styleTextField = makeStyles((theme) => ({
-     root: {
-     "& .MuiInputBase-root": {
-         color: teal[600]
-         },
-         "& .MuiFormLabel-root": {
-         color: teal[600]
-         },
-         root: {
-         borderColor: 'teal'
-         },
-         '&$focused $notchedOutline': {
-         borderColor: 'teal'
-         }
-     },  
+//  const styleTextField = makeStyles((theme) => ({
+//      root: {
+//      "& .MuiInputBase-root": {
+//          color: teal[600]
+//          },
+//          "& .MuiFormLabel-root": {
+//          color: teal[600]
+//          },
+//          root: {
+//          borderColor: 'teal'
+//          },
+//          '&$focused $notchedOutline': {
+//          borderColor: 'teal'
+//          }
+//      },  
      
-     }
- ));
+//      }
+//  ));
  
  
  
@@ -74,12 +74,10 @@
      // importing the payment method state
     //  const paymentMethodType = useSelector((state) => state.paymentMethodType.value);
      // localStorage.setItem("first name","Chandan")
-     const buttonStyle = useStyles();
-     const textFieldStyle = styleTextField();
-     var shippingInfo = JSON.parse(localStorage.getItem("shippingInfo"));
-     let cityLocalStore = shippingInfo.city.name;
-     let stateCodeLocalStore = shippingInfo.city.stateCode;
-     let countryCodeLocalStore = shippingInfo.city.countryCode;
+    //  const buttonStyle = useStyles();
+    //  const textFieldStyle = styleTextField();
+    //  const userDetails = localStorage.getItem("userDetails");
+     
      // Checkbox toggle
      const [checkBillingAddress, setCheckedBilling] = React.useState(true);
      const handleChange = (event) => {
@@ -159,41 +157,39 @@
                          <Grid item xs={12}  lg={4} md={5}>
                              <h4>Billing Information</h4>
  
-                             <TextField label={"First Name"} variant="standard" disabled={checkBillingAddress} onChange={handleFirstName} value={checkBillingAddress?shippingInfo.firstName:firstNameValue} fullWidth required ></TextField>
+                             <TextField label={"First Name"} variant="standard" disabled={checkBillingAddress} onChange={handleFirstName} value={firstNameValue} fullWidth required ></TextField>
                              
-                             <TextField label={"Last Name"} variant="standard" disabled={checkBillingAddress} onChange={handleLastName} value={checkBillingAddress?shippingInfo.lastName:lastNameValue} fullWidth required></TextField>
+                             <TextField label={"Last Name"} variant="standard" disabled={checkBillingAddress} onChange={handleLastName} value={lastNameValue} fullWidth required></TextField>
  
                              <Box component="span" sx={{ display: 'block' }}>
-                                 <FormControl variant="standard" size="small" fullWidth required>
-                                     <InputLabel >Country</InputLabel>
-                                     <Select
-                                     value={checkBillingAddress?countryCodeLocalStore:countryNameValue}
-                                     disabled={checkBillingAddress}
-                                     onChange={handleCountryName}
-                                     label="Country"
-                                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
-                                     >
-                                     <MenuItem value="">
-                                         <em>None</em>
-                                     </MenuItem>
-                                     
-                                     {Country &&
-                                     Country.getAllCountries().map((item) => (
-                                         <MenuItem key={item.isoCode} value={item.isoCode}>
-                                         {item.name}
-                                         </MenuItem>
-                                     ))}
-                                     
-                                     
-                                     </Select>
-                                 </FormControl>  
-                             </Box>
+                                <FormControl variant="standard" size="small" fullWidth required>
+                                    <InputLabel >Country</InputLabel>
+                                    <Select
+                                    value={countryNameValue}
+                                    onChange={handleCountryName}
+                                    label="Country"
+                                    MenuProps={{ PaperProps: { sx: { maxHeight: 200 } }, }}
+                                    >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    
+                                    {Country &&
+                                    Country.getAllCountries().map((item) => (
+                                        <MenuItem key={item.isoCode} value={item.isoCode}>
+                                        {item.name}
+                                        </MenuItem>
+                                    ))}
+                                    
+                                    </Select>
+                                </FormControl>  
+                            </Box>
                              {/*State Dropdown*/}
                              {<Box component="span" sx={{ display: 'block' }}>
                                  <FormControl variant="standard" size="small" fullWidth required>
                                      <InputLabel >State</InputLabel>
                                      <Select
-                                     value={checkBillingAddress?stateCodeLocalStore:stateNameValue}
+                                     value={stateNameValue}
                                      disabled={checkBillingAddress}
                                      onChange={handleStateName}
                                      label="State"
@@ -205,7 +201,7 @@
  
                                          
                                          {Country &&
-                                         State.getStatesOfCountry(checkBillingAddress?countryCodeLocalStore:countryNameValue).map((item) => (
+                                         State.getStatesOfCountry(countryNameValue).map((item) => (
                                              <MenuItem key={item.isoCode} value={item.isoCode}>
                                              {item.name}
                                              </MenuItem>
@@ -217,7 +213,7 @@
                                  <FormControl variant="standard" size="small" fullWidth required>
                                      <InputLabel >City</InputLabel>
                                      <Select
-                                     value={checkBillingAddress?cityLocalStore:cityNameValue}
+                                     value={cityNameValue}
                                      disabled={checkBillingAddress}
                                      onChange={handleCityName}
                                      label="City"
@@ -227,24 +223,22 @@
                                              <em>None</em>
                                          </MenuItem>
                                          
-                                         {!checkBillingAddress?City.getCitiesOfState(countryNameValue,stateNameValue).map((item) => (
+                                         {City.getCitiesOfState(countryNameValue,stateNameValue).map((item) => (
                                              <MenuItem key={item.isoCode} value={item}>
                                              {item.name}
                                              </MenuItem>
-                                         )):(<MenuItem key={cityLocalStore} value={cityLocalStore}>
-                                         {cityLocalStore}
-                                         </MenuItem>)}
+                                         ))}
                                      </Select>
                                  </FormControl>  
                              </Box>)}
                              
-                             <TextField label="Street Address" variant="standard" disabled={checkBillingAddress} onChange={handleStAddress}  value={checkBillingAddress?shippingInfo.stAddress:stAddressValue} fullWidth required></TextField>
+                             <TextField label="Street Address" variant="standard" disabled={checkBillingAddress} onChange={handleStAddress}  value={stAddressValue} fullWidth required></TextField>
                          
                              {/* <TextField label="City" variant="standard" disabled={checkBillingAddress} onChange={handleCityName} value={checkBillingAddress?shippingInfo.city:cityNameValue} fullWidth required></TextField> */}
                              
                              {/* <TextField label="State" variant="standard" disabled={checkBillingAddress} onChange={handleStateName} value={checkBillingAddress?shippingInfo.state:stateNameValue}  fullWidth required></TextField> */}
-                             
-                             <TextField label="Zip Code" type="number" variant="standard" disabled={checkBillingAddress} onChange={handleZipCode} value={checkBillingAddress?shippingInfo.zip:zipCodeValue} fullWidth required></TextField>
+                             zip
+                             <TextField label="Zip Code" type="number" variant="standard" disabled={checkBillingAddress} onChange={handleZipCode} value={zipCodeValue} fullWidth required></TextField>
                              
  
                              <Box component="span" sx={{ display: 'block', mt:2 }}>
@@ -258,7 +252,9 @@
                          
                          </Grid>
                          <Grid item xs={12}  lg={4} md={5}>
-                             <PaymentPlaceNow></PaymentPlaceNow>
+                             <PaymentPlaceNow checkBillingAddress={checkBillingAddress} firstNameValue={firstNameValue} lastNameValue={lastNameValue} 
+                             stAddressValue={stAddressValue} cityNameValue={cityNameValue} stateNameValue={stateNameValue} zipCodeValue={zipCodeValue} 
+                             countryNameValue={countryNameValue} ></PaymentPlaceNow>
                          </Grid>
                      </Grid>
                  </Box>

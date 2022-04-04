@@ -19,9 +19,13 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Button from '@mui/material/Button';
 import './List.css';
 import Navbar from '../../Components/NavigationBar/Navbar';
+import { ROUTES } from '../../common/constants';
+import { useNavigate } from "react-router-dom";
+
 
 function SlotBooking() {
     const params = useParams();
+    let navigate = useNavigate();
     const [expertInfo, setExpertInfo] = useState({});
     const [startDate, setStartDate] = useState(new Date());
     const apiUrl = 'http://localhost:5000/api/experts/bookProfessional/'+ params.id
@@ -38,10 +42,20 @@ function SlotBooking() {
         setDateTime(newValue);
     };
 
-    // const confirmBooking = (id) =>{
-    //     console.log("/slotbooking/" + id)
-    //     navigate("/slotbooking/" + id)
-    // }
+    const confirmBooking = () =>{
+        let itemData = {
+
+            professionalFirstName: expertInfo.firstName,
+            professionalLastName: expertInfo.lastName,
+            professionalMail: expertInfo.email,
+            professionalAddress: expertInfo.address,
+            consulatationCharge: expertInfo.basePrice,
+            appointmentDataAndTime: dateTime,
+            professionalProfileImg: expertInfo.url
+            }
+        localStorage.setItem("bookingDetails", JSON.stringify(itemData))
+        navigate(ROUTES.PAYMENTINFOFORM)
+    }
 
 
   return (
@@ -88,7 +102,7 @@ function SlotBooking() {
             </LocalizationProvider>
         </div>
         <div className='bookbutton'>
-            <Button size="medium" variant="contained" >Confirm Appointment</Button>
+            <Button size="medium" variant="contained" onClick={() => confirmBooking()}>Confirm Appointment</Button>
         </div>
     </div>
     );

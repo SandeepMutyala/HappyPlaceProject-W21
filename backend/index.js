@@ -5,7 +5,8 @@ const cors = require("cors");
 const expertsRoute = require("./routes/experts");
 const userRoute = require("./routes/userRoute");
 const passport = require("passport");
-
+const paymentRoute = require("./routes/paymentsRoute");
+const ordersRoute = require("./routes/ordersRoute");
 const app = express();
 
 dotenv.config();
@@ -21,6 +22,7 @@ require("./middleware/passport")(passport);
 app.use("/api/experts", expertsRoute);
 
 app.use("/api/users", userRoute);
+app.use(paymentRoute);
 
 app.get("/", (req, res, next) => {
   console.log("index route ");
