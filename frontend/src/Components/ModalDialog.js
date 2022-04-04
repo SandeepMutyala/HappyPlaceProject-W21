@@ -74,7 +74,7 @@ export default function ModalDialog(props) {
                             <TransferList friends={props.friends} member={data.groupMembers} onHandleGroup ={props.onHandleMemberUpdate}/>
                         </Grid>
                         <Grid item xs={12}>
-                            {(data.groupId === '') ?
+                            {( !data.groupId || data.groupId === '' ) ?
                                 (<Button variant="contained" sx={{width: '100%'}} onClick={handleSubmit}>
                                     Create Group
                                 </Button>)
