@@ -23,7 +23,30 @@ const Feed = () => {
      navigate(ROUTES.HOMEPAGE);
    }
 
+   //1.  DATA FOR /feed PAGE - so that loggedin user can see all connections updates
+  /* const apiURL1 = 'http://localhost:5000/api/feed/aeshna'
+   fetch(apiURL1)
+      .then((response) => response.json())
+    .then((data) => console.log('1. This is your data for feed list', data));
+    */
+
+    //2. GET USER STATUSES AND COUNT OF REACTIONS ON HIS POSTS
+/*
+   const apiURL2 = 'http://localhost:5000/api/feed/profile/aeshna'
+
+   fetch(apiURL2)
+  .then(response => response.json())
+  .then(data => console.log("API 2 results :", data));
+*/
+
+
+
+
 },[]);
+
+
+
+
 
 
 const [updates, setUpdates] = useState([
