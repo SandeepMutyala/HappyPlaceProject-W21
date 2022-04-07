@@ -1,3 +1,4 @@
+const { update } = require('../models/feed/Feed')
 const Feed = require('../models/feed/Feed')
 
   exports.getAllFeed = async (req, res, next) => {
@@ -71,3 +72,44 @@ console.log("Add Feed cart ")
 
 }
  
+
+exports.updateBadges = async (req, res, next) => {
+  console.log("Update Badge ")
+  
+   const feednum = req.params.feedid
+   const badge = req?.body?.badge || "congratsBadge" 
+
+   try{
+  const updatedfeed = await Feed.findOneAndUpdate(
+    {feedId : feednum},
+    {$inc: { [badge] : 1}}
+    )
+
+    if(updatedfeed){
+      const successResponse = {
+        message: 'badge updated successfully ',
+        success: true
+      }
+      res.status(200).json(successResponse)
+    }
+    else{
+      const errorResponse = {
+        message: 'No feedid found',
+        success: false,
+      }
+      res.status(404).json(errorResponse)
+    }
+    
+  }
+  catch(error)
+  {
+    const errorResponse = {
+      message: error,
+      success: false,
+    }
+    res.status(500).json(errorResponse)
+  }
+
+
+  }
+   
