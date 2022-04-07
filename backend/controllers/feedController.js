@@ -2,7 +2,7 @@ const { update } = require('../models/feed/Feed')
 const Feed = require('../models/feed/Feed')
 
   exports.getAllFeed = async (req, res, next) => {
-    console.log("Get all feed except user")
+  
     
     const user = req.params.user 
     
@@ -35,7 +35,7 @@ const Feed = require('../models/feed/Feed')
 
  
 exports.addFeed = async (req, res, next) => {
-console.log("Add Feed cart ")
+
 
  const feedid = Date.now().toString()
  const userName = req?.body?.userName || "aeshna"
@@ -74,7 +74,7 @@ console.log("Add Feed cart ")
  
 
 exports.updateBadges = async (req, res, next) => {
-  console.log("Update Badge ")
+
   
    const feednum = req.params.feedid
    const badge = req?.body?.badge || "congratsBadge" 

@@ -1,7 +1,7 @@
 const Experts = require('../models/experts/Experts')
 
   exports.getAllExperts = async (req, res, next) => {
-    console.log("Get all experts")
+
     const query = req.query.new
     try {
       const experts = query
