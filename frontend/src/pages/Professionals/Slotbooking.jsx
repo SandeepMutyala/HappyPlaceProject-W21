@@ -27,7 +27,6 @@ function SlotBooking() {
     const params = useParams();
     let navigate = useNavigate();
     const [expertInfo, setExpertInfo] = useState({});
-    const [startDate, setStartDate] = useState(new Date());
     const apiUrl = '/api/experts/bookProfessional/'+ params.id
     useEffect(() => {
         axios.get(apiUrl).then(
@@ -37,9 +36,9 @@ function SlotBooking() {
     )
     },[1]);
 
-    const [dateTime, setDateTime] = React.useState(new Date('2022-04-04T10:00:00'));
+    const [dateAndTime, setDateAndTime] = React.useState(new Date('2022-04-04T10:00:00'));
     const handleChange = (newValue) => {
-        setDateTime(newValue);
+        setDateAndTime(newValue);
     };
 
     const confirmBooking = () =>{
@@ -50,7 +49,7 @@ function SlotBooking() {
             professionalMail: expertInfo.email,
             professionalAddress: expertInfo.address,
             consulatationCharge: expertInfo.basePrice,
-            appointmentDataAndTime: dateTime,
+            appointmentDataAndTime: dateAndTime,
             professionalProfileImg: expertInfo.url
             }
         localStorage.setItem("bookingDetails", JSON.stringify(itemData))
@@ -82,19 +81,19 @@ function SlotBooking() {
                 </Grid>      
             </Grid>
         </div>
-        <div className='dateTime'>
+        <div className='dateAndTime'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <Stack spacing={4}>
                     <DesktopDatePicker
                         label="Pick appointment date"
                         inputFormat="MM/dd/yyyy"
-                        dateTime={dateTime}
+                        dateAndTime={dateAndTime}
                         onChange={handleChange}
                         renderInput={(params) => <TextField {...params} />}
                     />
                     <TimePicker 
                         label="Pick the time slot for the appointment"
-                        dateTime={dateTime}
+                        dateAndTime={dateAndTime}
                         onChange={handleChange}
                         renderInput={(params) => <TextField {...params} />}
                     />
