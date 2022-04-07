@@ -51,7 +51,7 @@ let paymentMethodType = "Credit/Debit Card";
     //  const cartItemsData = JSON.parse(localStorage.getItem("bookingDetails"));
     
     let userDetails ;
-    let bookingDetails;
+    let bookingDetails=("bookingDetails" in localStorage?JSON.parse(localStorage.getItem("bookingDetails")):"");
     let charges;
     const [toggle,setToggle] = useState(0);
     
@@ -168,7 +168,9 @@ let paymentMethodType = "Credit/Debit Card";
              });
          }
      }
+
      
+    
      // console.log(paymentMethodType);
    return (
     //  <Card className="textFont" >
@@ -261,7 +263,7 @@ let paymentMethodType = "Credit/Debit Card";
  
  
                  </Box>
-                 Total Amount <span style={{float: "right"}}>Amount</span>
+                 Total Amount <span style={{float: "right"}}>{(bookingDetails.consulatationCharge)*1.15}</span>
               </Typography>
 
               
