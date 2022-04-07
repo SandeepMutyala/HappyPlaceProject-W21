@@ -10,7 +10,7 @@ const UserView = () => {
     <>
       <Navbar />
       <Grid container spacing={9}>
-        <Grid item xs={3}>
+        <Grid item xs={3} sx={{paddingLeft: '30px'}}>
           <UserProfile />
         </Grid>
         <Grid item xs={9} mt={6}>

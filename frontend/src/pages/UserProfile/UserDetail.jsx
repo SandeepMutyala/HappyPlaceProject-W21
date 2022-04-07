@@ -52,7 +52,6 @@ export default function UserDetail() {
         state: { authenticated, currentUser },
     } = useContext(AppContext);
 
-    const [user, setUser] = useState();
     const [value, setValue] = React.useState(1);
 
     const handleChange = (event, newValue) => {

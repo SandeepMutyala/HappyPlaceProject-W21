@@ -21,27 +21,28 @@ export default function FeedCard(props) {
         <>
             <Grid container spacing={3}>
                 {props.feedList && props.feedList.map((feed, idx) => (
-                        <>
-                            <Grid item xs={4}>
-                                <Card>
-                                    <CardHeader
-                                        avatar={
-                                            <Avatar sx={{width: '50px', height: '50px'}} src={"https://i.pravatar.cc/300?img=" + idx}> </Avatar>
-                                        }
-                                        title={feed.userName}
-                                        subheader={feed.createdAt}
-                                    />
-                                    <CardContent>
-                                        <Typography variant="body2">
-                                            {feed.feedText}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions sx={{paddingLeft:'9%'}}>
-                                        <ReactionBarSelector reactions={reactions} onSelect={e => props.onHandleClick(e, feed.feedId)} iconSize={'20px'}/>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        </>
+                        <Grid item xs={4}>
+                            <Card>
+                                <CardHeader
+                                    avatar={
+                                        <Avatar sx={{width: '50px', height: '50px'}}
+                                                src={"https://i.pravatar.cc/300?img=" + idx}> </Avatar>
+                                    }
+                                    title={feed.userName}
+                                    subheader={feed.createdAt}
+                                />
+                                <CardContent>
+                                    <Typography variant="body2">
+                                        {feed.feedText}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions sx={{paddingLeft: '9%'}}>
+                                    <ReactionBarSelector reactions={reactions}
+                                                         onSelect={e => props.onHandleClick(e, feed.feedId)}
+                                                         iconSize={'20px'}/>
+                                </CardActions>
+                            </Card>
+                        </Grid>
                     )
                 )}
             </Grid>

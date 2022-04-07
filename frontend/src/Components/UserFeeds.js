@@ -2,11 +2,12 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-import {Alert, Badge, CardActions, CardHeader, Snackbar, TextField} from "@mui/material";
+import {Alert, Badge, CardActions, CardHeader, Divider, Snackbar, TextField} from "@mui/material";
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
 import CardContent from "@mui/material/CardContent";
 import {Typography} from "@material-ui/core";
+import Box from "@mui/material/Box";
 
 const feed = [
     {
@@ -44,26 +45,21 @@ const feed = [
         "__v": 0
     }
 ]
-export default function UserFeeds() {
+export default function UserFeeds(props) {
     const [feedList, setFeedList] = useState([]);
     const [feedMsg, setFeedMsg] = useState('');
     const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState("")
     useEffect(() => {
         setFeedList(feed);
-        // getData();
-    }, [1]);
+        setFeedMsg("");
+        getData();
+    }, []);
     const getData = () => {
-        // const data = {'username' : props.user.firstName}
-        const data = {'username': 'Asmita'}
-        axios.get(`/api/feed/`, data, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        axios.get(`/api/feed/profile/${props.user.firstName}`)
             .then((response) => {
                 if (response.data.success)
-                    setFeedList(response.data.experts);
+                    setFeedList(response.data.feeds);
             })
     }
 
@@ -72,7 +68,7 @@ export default function UserFeeds() {
     }
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            const data = {'userName': 'Asmita', "feedText": feedMsg}
+            const data = {'userName': props.user.firstName, "feedText": feedMsg}
             axios.post(`/api/feed/`, data, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -82,6 +78,8 @@ export default function UserFeeds() {
                     if (response.data.success) {
                         setOpen(true);
                         setMsg(response.data.message)
+                        setFeedMsg("")
+                        getData();
                     }
                 })
         }
@@ -95,20 +93,26 @@ export default function UserFeeds() {
     };
     return (
         <>
-            <Grid container spacing={3} ml={2}>
-                <Grid item xs={12}>
-                    <TextField
-                        id="outlined-helperText"
-                        label="Feed Message"
-                        value={feedMsg}
-                        fullWidth
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                    />
+            <Box mb={5}>
+                <h4 style={{color: "rgb(21, 102, 70)", paddingTop: '20px', paddingBottom: '10px'}}> What's on your mind? </h4>
+                <Grid container spacing={3} ml={2}>
+                    <Grid item xs={12}>
+                        <TextField
+                            id="outlined-helperText"
+                            label="Feed Message"
+                            value={feedMsg}
+                            fullWidth
+                            onChange={handleChange}
+                            onKeyDown={handleKeyDown}
+                        />
+                    </Grid>
                 </Grid>
-                {feedList && feedList.map((feed, idx) => (
-                        <>
-                            <Grid item xs={4}>
+            </Box>
+            <Box>
+                <h4 style={{color: "rgb(21, 102, 70)", paddingTop: '20px', paddingBottom: '10px'}}> Latest Updates </h4>
+                <Grid container mt={3} spacing={3}>
+                    {feedList && feedList.map((feed, idx) => (
+                            <Grid item xs={4} key={idx}>
                                 <Card>
                                     <CardHeader
                                         avatar={
@@ -151,10 +155,10 @@ export default function UserFeeds() {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                        </>
-                    )
-                )}
-            </Grid>
+                        )
+                    )}
+                </Grid>
+            </Box>
             <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success" sx={{width: "100%"}}>
                     {msg}
