@@ -115,7 +115,7 @@ exports.updateBadges = async (req, res, next) => {
 
   exports.getUserProfileBadges = async (req, res, next) => {
      
-    const user = req?.body?.username || "aeshna" 
+    const user = req?.params?.user
 
     try {
       const feeds = await Feed.find({ userName:  user })
