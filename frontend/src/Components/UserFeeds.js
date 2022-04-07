@@ -57,7 +57,10 @@ export default function UserFeeds(props) {
     return (
         <>
             <Box mb={5}>
-                <h4 style={{color: "rgb(21, 102, 70)", paddingTop: '20px', paddingBottom: '10px'}}> What's on your mind? </h4>
+                <p style={{display: 'inline-flex', width: '100%'}}>
+                <h4 style={{color: "rgb(21, 102, 70)"}}> What's on your
+                    mind?</h4><h5 style={{color: "rgba(21, 102, 70, 0.8)"}}>(Press enter to post!)</h5>
+                </p>
                 <Grid container spacing={3} ml={2}>
                     <Grid item xs={12}>
                         <TextField
