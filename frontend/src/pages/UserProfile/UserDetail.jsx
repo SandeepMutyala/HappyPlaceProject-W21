@@ -52,7 +52,7 @@ export default function UserDetail() {
         state: { authenticated, currentUser },
     } = useContext(AppContext);
 
-    const [value, setValue] = React.useState(1);
+    const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -62,24 +62,25 @@ export default function UserDetail() {
         <Box sx={{width: '100%'}}>
             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="lab API tabs example">
-                    <Tab  icon={<MenuBookIcon />} iconPosition="start" label="Overview" {...a11yProps(0)} />
+                    <Tab  icon={<VerifiedIcon />} iconPosition="start" label="Feeds" {...a11yProps(0)} />
                     <Tab  icon={<GroupsIcon />} iconPosition="start" label="Groups" {...a11yProps(1)} />
-                    <Tab  icon={<HistoryIcon />} iconPosition="start" label="History Activity" {...a11yProps(2)} />
-                    <Tab  icon={<VerifiedIcon />} iconPosition="start" label="Badge" {...a11yProps(3)} />
+                    <Tab  icon={<MenuBookIcon />} iconPosition="start" label="Overview" {...a11yProps(2)} />
+                    <Tab  icon={<HistoryIcon />} iconPosition="start" label="History Activity" {...a11yProps(3)} />
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                Overview
+                <UserFeeds user = {currentUser}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <Groups group={group}/>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                History Activity
+                Overview
             </TabPanel>
             <TabPanel value={value} index={3}>
-                <UserFeeds user = {currentUser}/>
+                History Activity
             </TabPanel>
+
         </Box>
     );
 }

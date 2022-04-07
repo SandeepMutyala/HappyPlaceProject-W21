@@ -15,7 +15,7 @@ import groups from "../pages/UserProfile/dump";
 
 const initialValue = {
     groupName: '',
-    groupImg: 'https://picsum.photos/200',
+    groupImg: 'https://picsum.photos/id/106/200',
     groupDesc: '',
     groupMembers: [],
     advisor: {},
