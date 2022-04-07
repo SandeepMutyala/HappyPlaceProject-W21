@@ -18,11 +18,11 @@ const Feed = require('../models/feed/Feed')
         }
         res.status(200).json(successResponse)
       } else {
-        const errorResponse = {
-          message: 'No Feeds',
-          success: false,
+        const infoMsgResponse = {
+          message: 'No updates from any users',
+          success: true,
         }
-        res.status(404).json(errorResponse)
+        res.status(201).json(infoMsgResponse)
       }
     } catch (err) {
       const errorResponse = {
@@ -129,10 +129,10 @@ exports.updateBadges = async (req, res, next) => {
         res.status(200).json(successResponse)
       } else {
         const errorResponse = {
-          message: 'No Feeds',
-          success: false,
+          message: 'No Feeds avaialble',
+          success: true,
         }
-        res.status(404).json(errorResponse)
+        res.status(201).json(errorResponse)
       }
     } catch (err) {
       const errorResponse = {
