@@ -9,49 +9,12 @@ import CardContent from "@mui/material/CardContent";
 import {Typography} from "@material-ui/core";
 import Box from "@mui/material/Box";
 
-const feed = [
-    {
-        "_id": "624e55cd163d5d57d54984eb",
-        "feedId": 1649300941853,
-        "userName": "Asmita",
-        "feedText": "I did yoga",
-        "congratsBadge": 1,
-        "fabBadge": 2,
-        "perfectBadge": 0,
-        "awesomeBadge": 0,
-        "yaayBadge": 0,
-        "applauseBadge": 0,
-        "celebrteBadge": 0,
-        "strongBadge": 0,
-        "createdAt": "2022-04-07T03:09:01.854Z",
-        "updatedAt": "2022-04-07T04:45:39.664Z",
-        "__v": 0
-    },
-    {
-        "_id": "624e6fce8b91a3ec6e5d8126",
-        "feedId": 1649307598706,
-        "userName": "Asmita",
-        "feedText": "I joined dance class",
-        "congratsBadge": 0,
-        "fabBadge": 0,
-        "perfectBadge": 0,
-        "awesomeBadge": 0,
-        "yaayBadge": 0,
-        "applauseBadge": 0,
-        "celebrteBadge": 0,
-        "strongBadge": 0,
-        "createdAt": "2022-04-07T04:59:58.713Z",
-        "updatedAt": "2022-04-07T04:59:58.713Z",
-        "__v": 0
-    }
-]
 export default function UserFeeds(props) {
     const [feedList, setFeedList] = useState([]);
     const [feedMsg, setFeedMsg] = useState('');
     const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState("")
     useEffect(() => {
-        setFeedList(feed);
         setFeedMsg("");
         getData();
     }, []);
