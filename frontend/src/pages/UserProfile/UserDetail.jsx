@@ -10,6 +10,9 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import HistoryIcon from '@mui/icons-material/History';
 import Groups from "../../Components/Groups";
 import group from "./dump"
+import UserFeeds from "../../Components/UserFeeds";
+import {useContext, useState} from "react";
+import {AppContext} from "../../context/userContext";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -45,7 +48,11 @@ function a11yProps(index) {
 }
 
 export default function UserDetail() {
-    const [value, setValue] = React.useState(1);
+    const {
+        state: { authenticated, currentUser },
+    } = useContext(AppContext);
+
+    const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -55,24 +62,25 @@ export default function UserDetail() {
         <Box sx={{width: '100%'}}>
             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="lab API tabs example">
-                    <Tab  icon={<MenuBookIcon />} iconPosition="start" label="Overview" {...a11yProps(0)} />
+                    <Tab  icon={<VerifiedIcon />} iconPosition="start" label="Feeds" {...a11yProps(0)} />
                     <Tab  icon={<GroupsIcon />} iconPosition="start" label="Groups" {...a11yProps(1)} />
-                    <Tab  icon={<HistoryIcon />} iconPosition="start" label="History Activity" {...a11yProps(2)} />
-                    <Tab  icon={<VerifiedIcon />} iconPosition="start" label="Badge" {...a11yProps(3)} />
+                    <Tab  icon={<MenuBookIcon />} iconPosition="start" label="Overview" {...a11yProps(2)} />
+                    <Tab  icon={<HistoryIcon />} iconPosition="start" label="History Activity" {...a11yProps(3)} />
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                Overview
+                <UserFeeds user = {currentUser}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <Groups group={group}/>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                History Activity
+                Overview
             </TabPanel>
             <TabPanel value={value} index={3}>
-                Badge
+                History Activity
             </TabPanel>
+
         </Box>
     );
 }

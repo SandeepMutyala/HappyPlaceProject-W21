@@ -4,7 +4,6 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../common/constants";
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
@@ -48,37 +47,35 @@ function List() {
           spacing={2}
           alignItems="center"
           justify="center"
-          style={{ minHeight: '25vh' }}
-        >
-        <Grid item xl={5}>
-          { list.map(fieldName => (
-        <Card className = "singlecard" sx={{ maxWidth: 450 }}>
-          <CardMedia
-            image={fieldName.url}
-            component="img"
-            height="200"
-          />
-          <CardContent>
-            <Typography  variant="h4" component="div">
-              {fieldName.firstName} {fieldName.lastName}
-            </Typography>
-            <Typography component="div">
-              {fieldName.email}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {fieldName.address}
-            </Typography>
-              Charge per appointment: ${fieldName.basePrice}
-            </CardContent>
-            <CardActions>
-              <Button size="medium" onClick={() => slotBooking(fieldName._id)}>Book</Button>
-          </CardActions>
-        </Card>
-      ))} 
-             </Grid>      
+          style={{ minHeight: '25vh' }}>
+          <Grid item xl={5}>
+            { list.map(fieldName => (
+            <Card className = "singlecard" sx={{ maxWidth: 450 }}>
+              <CardMedia
+                image={fieldName.url}
+                component="img"
+                height="200"/>
+                  <CardContent>
+                    <Typography  variant="h4" component="div">
+                      {fieldName.firstName} {fieldName.lastName}
+                    </Typography>
+                    <Typography component="div">
+                      {fieldName.email}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {fieldName.address}
+                    </Typography>
+                      Charge per appointment: ${fieldName.basePrice}
+                  </CardContent>
+                  <div className='bookbutton'>
+                    <Button className="bookbutton" variant="contained" size="medium" onClick={() => slotBooking(fieldName._id)}>Book</Button>
+                  </div>
+              </Card>
+              ))} 
+            </Grid>      
         </Grid>
+      </div>
     </div>
-  </div>
   );
 }
 

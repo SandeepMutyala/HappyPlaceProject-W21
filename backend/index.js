@@ -9,6 +9,7 @@ const paymentRoute = require("./routes/paymentsRoute");
 const ordersRoute = require("./routes/ordersRoute");
 const app = express();
 const path = require("path");
+const feedRoute = require("./routes/feeds")
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use("/api/experts", expertsRoute);
 
 app.use("/api/users", userRoute);
 app.use(paymentRoute);
+app.use("/api/feed", feedRoute)
 
 // app.get("/", (req, res, next) => {
 //   console.log("index route ");

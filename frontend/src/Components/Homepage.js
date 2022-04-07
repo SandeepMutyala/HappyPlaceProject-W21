@@ -6,7 +6,7 @@ import Footer from "./Footer/Footer";
 const Homepage = () => {
   return (
     <>
-      <NavigationBar />({" "}
+      <NavigationBar />
       <div>
         <div className={styles.banner}>
           <div className={styles.twoSection}></div>
@@ -24,17 +24,17 @@ const Homepage = () => {
           <div className={styles.threeRow}>
             <div className={styles.threeSection}>
               <h2 className={styles.title}>Peer Support</h2>
-              <p>Lorem ipsum</p>
+              <p> Join us for online counseling, peer support and more</p>
             </div>
 
             <div className={styles.threeSection}>
-              <h2 className={styles.title}>Simple interface</h2>
-              <p>loremipsum</p>
+              <h2 className={styles.title}>Simple Interface</h2>
+              <p>Easy to use interface. Press the button and we do the rest</p>
             </div>
 
             <div className={styles.threeSection}>
-              <h2 className={styles.title}>professional appointments</h2>
-              <p>lorem ipsum</p>
+              <h2 className={styles.title}>Professional Appointments</h2>
+              <p>Join us for consulation with trained emotional welness experts</p>
             </div>
           </div>
         </div>
