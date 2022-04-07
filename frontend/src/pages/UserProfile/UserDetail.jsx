@@ -10,6 +10,9 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import HistoryIcon from '@mui/icons-material/History';
 import Groups from "../../Components/Groups";
 import group from "./dump"
+import UserFeeds from "../../Components/UserFeeds";
+import {useContext, useState} from "react";
+import {AppContext} from "../../context/userContext";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -45,6 +48,11 @@ function a11yProps(index) {
 }
 
 export default function UserDetail() {
+    const {
+        state: { authenticated, currentUser },
+    } = useContext(AppContext);
+
+    const [user, setUser] = useState();
     const [value, setValue] = React.useState(1);
 
     const handleChange = (event, newValue) => {
@@ -71,7 +79,7 @@ export default function UserDetail() {
                 History Activity
             </TabPanel>
             <TabPanel value={value} index={3}>
-                Badge
+                <UserFeeds user = {currentUser}/>
             </TabPanel>
         </Box>
     );
