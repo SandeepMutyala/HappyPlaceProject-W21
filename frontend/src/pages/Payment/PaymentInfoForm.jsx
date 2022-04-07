@@ -61,7 +61,7 @@ const PaymentInfoForm=() => {
         <div>
             <Navbar />
         </div>
-        <h3>Please fill all the personal details to confirm booking.</h3>
+        <h3>Please fill all the personal details to navigate to payments page.</h3>
         <div className="form">
             <form onSubmit={handleSubmit}>
                 

@@ -11,19 +11,17 @@
 }
 
 .totalcard {
-    /* background-color: #000; */
     border: 3px solid #555;
     border-radius: 5px;
-  background-color: #f2f2f2;
-  /* padding: 20px; */
-  border-left: 10%;
+    background-color: #f2f2f2;
+    border-left: 10%;
 }
 .singlecard:hover {
     cursor: pointer;
     transform: scale(0.9);
 }
 
-.dateTime {
+.dateAndTime {
     padding-top: 5%;
 }
 
@@ -34,8 +32,3 @@
     justify-content: center;
 }
 
-/* .time {
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-} */
