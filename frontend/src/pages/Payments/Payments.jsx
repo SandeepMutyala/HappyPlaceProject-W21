@@ -30,7 +30,7 @@
  import PropTypes from 'prop-types';
  import Navbar from '../../Components/NavigationBar/Navbar';
  import MuMenuItem from "@material-ui/core/MenuItem";
- 
+
  const MenuItem = withStyles({
     root: {
       justifyContent: "flex-start"
@@ -167,7 +167,7 @@
                          alignItems="center"
                          justifyContent="center"
                          style={{ minHeight: '30vh' }} className="textFont"><h1>Payment Information</h1></Grid> 
-                 <Box sx={{ flexGrow: 1, mx:8}} className="textFont" >
+                 <Box sx={{ flexGrow: 1, mx:20}} className="textFont" >
                      <Grid container spacing={20} direction="row" justifyContent="center">
                          <Grid item xs={12}  lg={6} md={6}>
                              <h4>Billing Information</h4>
@@ -267,7 +267,7 @@
                              </Box>
                          
                          </Grid>
-                         <Grid item xs={12}  lg={6} md={6}>
+                         <Grid  item xs={12}  lg={6} md={6} >
                              <PaymentPlaceNow checkBillingAddress={checkBillingAddress} firstNameValue={firstNameValue} lastNameValue={lastNameValue} 
                              stAddressValue={stAddressValue} cityNameValue={cityNameValue} stateNameValue={stateNameValue} zipCodeValue={zipCodeValue} 
                              countryNameValue={countryNameValue} ></PaymentPlaceNow>
