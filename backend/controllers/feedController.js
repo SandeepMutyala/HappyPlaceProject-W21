@@ -110,6 +110,35 @@ exports.updateBadges = async (req, res, next) => {
     res.status(500).json(errorResponse)
   }
 
-
   }
    
+
+  exports.getUserProfileBadges = async (req, res, next) => {
+     
+    const user = req?.body?.username || "aeshna" 
+
+    try {
+      const feeds = await Feed.find({ userName:  user })
+
+      if (feeds.length > 0) {
+        const successResponse = {
+          message: 'Feed fetched successfully',
+          success: true,
+          feeds: feeds,
+        }
+        res.status(200).json(successResponse)
+      } else {
+        const errorResponse = {
+          message: 'No Feeds',
+          success: false,
+        }
+        res.status(404).json(errorResponse)
+      }
+    } catch (err) {
+      const errorResponse = {
+        message: err,
+        success: false,
+      }
+      res.status(500).json(errorResponse)
+    }
+  }
