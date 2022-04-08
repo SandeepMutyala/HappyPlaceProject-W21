@@ -1,7 +1,7 @@
 # Team7
 
 - _ApplicationName_: Happy Place
-- _LiveURL_: NOT LIVE YET
+- _LiveURL_: <https://happy-place-team7.herokuapp.com>
 
 ## Authors
 
