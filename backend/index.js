@@ -26,7 +26,7 @@ app.use("/api/experts", expertsRoute);
 app.use("/api/users", userRoute);
 app.use(paymentRoute);
 app.use("/api/feed", feedRoute)
-
+app.use(ordersRoute);
 // app.get("/", (req, res, next) => {
 //   console.log("index route ");
 //   res.status(200).json({

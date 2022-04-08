@@ -5,30 +5,38 @@
  */
 
 
- import React, {useState} from 'react'
- import {Card} from 'react-bootstrap';
- import Radio from '@mui/material/Radio';
- import RadioGroup from '@mui/material/RadioGroup';
- import { blue } from '@mui/material/colors';
- import FormControl from '@mui/material/FormControl';
- import FormControlLabel from "@material-ui/core/FormControlLabel";
- import Button from '@material-ui/core/Button';
- import Box from '@mui/material/Box';
- import { makeStyles } from '@material-ui/core/styles';
- import axios from 'axios';
- import './Payments.css';
+import React, {useState} from 'react'
+// import {Card} from 'react-bootstrap';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import { green } from '@mui/material/colors';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Button from '@material-ui/core/Button';
+import Box from '@mui/material/Box';
+import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+import './Payments.css';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+// import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+//  import 'bootstrap/dist/css/bootstrap.min.css';
  
  const useStyles = makeStyles({
      root: {
-       background: "#3f51b5",
+       background: "#1f9264",
        border: 0,
        color: 'white',
        height: 40,
        fontSize: 18,
+       width: "100%",
        textTransform: 'none',
        fontWeight: 600,
        "&:hover": {
-         background: "#4e69d4",
+         background: "#104932",
          color: "#fff"
        }
      },
@@ -43,7 +51,7 @@ let paymentMethodType = "Credit/Debit Card";
     //  const cartItemsData = JSON.parse(localStorage.getItem("bookingDetails"));
     
     let userDetails ;
-    let bookingDetails;
+    let bookingDetails=("bookingDetails" in localStorage?JSON.parse(localStorage.getItem("bookingDetails")):"");
     let charges;
     const [toggle,setToggle] = useState(0);
     
@@ -98,7 +106,7 @@ let paymentMethodType = "Credit/Debit Card";
         line_items.push(items);
         let data = {
             line_items,
-            "customer_email": "abcd@Dal.ca",
+            "customer_email": userDetails.email,
             "delivery": 10
         };
         let billingAddress;
@@ -144,7 +152,8 @@ let paymentMethodType = "Credit/Debit Card";
         let payload ={
             totalAmount: charges,
             billingAddress,
-            line_items
+            line_items,
+            userEmail: userDetails.email
         };
         
          if(paymentMethodType==='Credit/Debit Card'){
@@ -160,58 +169,114 @@ let paymentMethodType = "Credit/Debit Card";
              });
          }
      }
+
      
+    
      // console.log(paymentMethodType);
    return (
-     <Card className="textFont" >
-         <Card.Header className="text-center" ><h4 >Payment Methods</h4></Card.Header>
-         <Card.Body >
-             <Card.Title style={{textAlign: 'left'}}>Chose your payment method</Card.Title>
-             <Card.Title>
-                 <Box component="span" sx={{ display: 'block', mt:2 }}>
-                     <FormControl>
-                         <RadioGroup
-                             aria-labelledby="demo-radio-buttons-group-label"
-                             defaultValue="Credit/Debit Card"
-                             name="radio-buttons-group" 
-                         >
-                             <FormControlLabel value="Credit/Debit Card" control={<Radio 
+    //  <Card className="textFont" >
+    //      <Card.Header className="text-center" ><h4 >Payment Methods</h4></Card.Header>
+    //      <Card.Body >
+    //          <Card.Title style={{textAlign: 'left'}}>Chose your payment method</Card.Title>
+    //          <Card.Title>
+    //              <Box component="span" sx={{ display: 'block', mt:2 }}>
+    //                  <FormControl>
+    //                      <RadioGroup
+    //                          aria-labelledby="demo-radio-buttons-group-label"
+    //                          defaultValue="Credit/Debit Card"
+    //                          name="radio-buttons-group" 
+    //                      >
+    //                          <FormControlLabel value="Credit/Debit Card" control={<Radio 
                              
-                             sx={{
-                                 color: blue[800],
-                                 '&.Mui-checked': {
-                                 color: blue[600],
-                             },
-                             }}
-                             />} label="Credit/Debit Card" />
-                             <FormControlLabel value="Paypal" control={<Radio 
+    //                          sx={{
+    //                              color: blue[800],
+    //                              '&.Mui-checked': {
+    //                              color: blue[600],
+    //                          },
+    //                          }}
+    //                          />} label="Credit/Debit Card" />
+    //                          <FormControlLabel value="Paypal" control={<Radio 
                              
-                             sx={{
-                                 color: blue[800],
-                                 '&.Mui-checked': {
-                                 color: blue[600],
-                             },
-                             }} disabled={true}
-                             />} label="Paypal (Currently Not Avaialble)" />
+    //                          sx={{
+    //                              color: blue[800],
+    //                              '&.Mui-checked': {
+    //                              color: blue[600],
+    //                          },
+    //                          }} disabled={true}
+    //                          />} label="Paypal (Currently Not Avaialble)" />
                      
                              
-                         </RadioGroup>
-                     </FormControl>
+    //                      </RadioGroup>
+    //                  </FormControl>
+ 
+ 
+    //              </Box>
+    //          </Card.Title>
+    //      </Card.Body>
+    //      <Card.Footer>
+             
+    //          <Card.Title style={{textAlign: 'left'}}>Total Amount <span style={{float: "right"}}>Amount</span></Card.Title>
+             
+    //      </Card.Footer>
+    //      <Button variant="contained" className={buttonStyle.root}
+    //      onClick={handlePlaceOrderBtn} >Place Order</Button>
+    //      {/* <Button variant="primary" className="placeButton" onClick={() => handleNewButton()}>Place Order</Button> */}
+    //  </Card>
+
+        <Card  >
+            <CardContent sx={{ p: 0 }}>
+              <Typography gutterBottom variant="h5" component="div" style={{backgroundColor: '#1f9264', color: '#fff',display: 'flex', 
+     alignItems: 'center', 
+     justifyContent:'center'}}  > 
+              Payment Methods
+              </Typography>
+              <Typography gutterBottom variant="h6" component="div" sx={{ px: 2 }}>
+              Chose your payment method
+              <Box component="span" sx={{ display: 'block', mt:2  }}>
+                      <FormControl>
+                          <RadioGroup
+                              aria-labelledby="demo-radio-buttons-group-label"
+                              defaultValue="Credit/Debit Card"
+                              name="radio-buttons-group" 
+                          >
+                              <FormControlLabel value="Credit/Debit Card" control={<Radio 
+                             
+                             sx={{
+                                 color: green[800],
+                                 '&.Mui-checked': {
+                              color: green[600],
+                              },
+                              }}
+                              />} label="Credit/Debit Card" />
+                              <FormControlLabel value="Paypal" control={<Radio 
+                             
+                             sx={{
+                                  color: green[800],
+                                  '&.Mui-checked': {
+                                 color: green[600],
+                             },
+                             }} disabled={true}
+                              />} label="Paypal (Currently Not Avaialble)" />
+                     
+                             
+                          </RadioGroup>
+                      </FormControl>
  
  
                  </Box>
-             </Card.Title>
-         </Card.Body>
-         <Card.Footer>
-             
-             <Card.Title style={{textAlign: 'left'}}>Total Amount <span style={{float: "right"}}>Amount</span></Card.Title>
-             
-         </Card.Footer>
-         <Button variant="contained" className={buttonStyle.root}
-         onClick={handlePlaceOrderBtn} >Place Order</Button>
-         {/* <Button variant="primary" className="placeButton" onClick={() => handleNewButton()}>Place Order</Button> */}
-     </Card>
- 
+                 Total Amount <span style={{float: "right"}}>{(bookingDetails.consulatationCharge)*1.15}</span>
+              </Typography>
+
+              
+
+            </CardContent>
+            <Typography variant="h5" component="div" style={{backgroundColor: '#3f51b5', color: '#fff',display: 'flex', 
+     alignItems: 'center', 
+     justifyContent:'center'}}  > 
+              <Button  className={buttonStyle.root} onClick={handlePlaceOrderBtn}>Place Order</Button>
+              </Typography>
+            
+        </Card>
    )
  }
  

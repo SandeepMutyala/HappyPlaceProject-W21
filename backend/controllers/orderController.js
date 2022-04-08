@@ -1,29 +1,28 @@
-// const orderModel = require('../models/orderModel');
+const orderModel = require('../models/orders/orderModel');
 
 
 const createNewOrder = async (req,res) => {
-    console.log(req.body);
+    
     //const {shippingInfo, shippingMethod, orderItems, paymentInfo, itemsAmount, taxAmount, shippingAmount, paymentAmount } = req.body;
-    const shippingInfo = req.body.shippingInfo;
-    const orderItems = req.body.orderItems;
+    const billingAddress = req.body.billingAddress
+    const orderItems = req.body.line_items;
     const paymentInfo = req.body.paymentInfo;
-    const itemsAmount = req.body.itemsAmount;
-    const taxAmount = req.body.taxAmount;
-    const paymentAmount = req.body.paymentAmount;
+    const itemsAmount = (orderItems[0].price_data.unit_amount)/100;
+    const taxAmount = itemsAmount*0.15
+    const paymentAmount = itemsAmount + taxAmount;
     const userEmail = req.body.userEmail;
     const orderStatus = req.body.orderStatus;
+    console.log(billingAddress);
     try{
         const order = await orderModel.create(
             {
-                shippingInfo,
-                shippingMethod,
+
                 orderItems,
                 userEmail,
                 orderStatus,
                 paymentInfo,
                 itemsAmount,
                 taxAmount,
-                shippingAmount,
                 paymentAmount,
                 paidAt: Date.now(),
                 //user: req.user._id,
