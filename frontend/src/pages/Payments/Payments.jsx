@@ -260,7 +260,7 @@
                              <Box component="span" sx={{ display: 'block', mt:2 }}>
  
                                  <FormControlLabel  control={<Checkbox checked={checkBillingAddress} defaultChecked onChange={handleChange} style={{
-                                 color: "#2979FF"
+                                 color: "#1f9264"
                                  }} />} label="Your billing address same as your shipping address?" />
  
  

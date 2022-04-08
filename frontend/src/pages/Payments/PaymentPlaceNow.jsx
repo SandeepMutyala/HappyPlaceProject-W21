@@ -9,7 +9,7 @@ import React, {useState} from 'react'
 // import {Card} from 'react-bootstrap';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import { blue } from '@mui/material/colors';
+import { green } from '@mui/material/colors';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from '@material-ui/core/Button';
@@ -27,7 +27,7 @@ import Typography from '@mui/material/Typography';
  
  const useStyles = makeStyles({
      root: {
-       background: "#3f51b5",
+       background: "#1f9264",
        border: 0,
        color: 'white',
        height: 40,
@@ -36,7 +36,7 @@ import Typography from '@mui/material/Typography';
        textTransform: 'none',
        fontWeight: 600,
        "&:hover": {
-         background: "#4e69d4",
+         background: "#104932",
          color: "#fff"
        }
      },
@@ -224,7 +224,7 @@ let paymentMethodType = "Credit/Debit Card";
 
         <Card  >
             <CardContent sx={{ p: 0 }}>
-              <Typography gutterBottom variant="h5" component="div" style={{backgroundColor: '#3f51b5', color: '#fff',display: 'flex', 
+              <Typography gutterBottom variant="h5" component="div" style={{backgroundColor: '#1f9264', color: '#fff',display: 'flex', 
      alignItems: 'center', 
      justifyContent:'center'}}  > 
               Payment Methods
@@ -241,18 +241,18 @@ let paymentMethodType = "Credit/Debit Card";
                               <FormControlLabel value="Credit/Debit Card" control={<Radio 
                              
                              sx={{
-                                 color: blue[800],
+                                 color: green[800],
                                  '&.Mui-checked': {
-                              color: blue[600],
+                              color: green[600],
                               },
                               }}
                               />} label="Credit/Debit Card" />
                               <FormControlLabel value="Paypal" control={<Radio 
                              
                              sx={{
-                                  color: blue[800],
+                                  color: green[800],
                                   '&.Mui-checked': {
-                                 color: blue[600],
+                                 color: green[600],
                              },
                              }} disabled={true}
                               />} label="Paypal (Currently Not Avaialble)" />

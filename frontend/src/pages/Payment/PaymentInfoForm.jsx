@@ -13,6 +13,7 @@ import Navbar from "../../Components/NavigationBar/Navbar";
 import './PaymentForm.css';
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from '../../common/constants';
+import { makeStyles } from '@material-ui/core/styles';
 
 const defaultValues = {
     firstname: "",
@@ -26,8 +27,25 @@ const defaultValues = {
     zipCode:"",
   };
 
+  const useStyles = makeStyles({
+    root: {
+      background: "#1f9264",
+      border: 0,
+      color: 'white',
+      height: 40,
+      fontSize: 18,
+      textTransform: 'none',
+      fontWeight: 600,
+      "&:hover": {
+        background: "#104932",
+        color: "#fff"
+      }
+    },
+  });
+
 const PaymentInfoForm=() => {
     let navigate = useNavigate();
+    const buttonStyle = useStyles();
     const [formValues, setFormValues] = useState(defaultValues);
     const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -183,7 +201,7 @@ const PaymentInfoForm=() => {
                             onChange={handleInputChange}
                         />
                     </Grid>
-                    <Button variant="contained" color="primary" type="submit">
+                    <Button variant="contained" className={buttonStyle.root} type="submit">
                         Submit
                     </Button>
                 </Grid>
