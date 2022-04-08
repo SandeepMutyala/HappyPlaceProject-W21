@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 
 const orderDetailsSchema = new mongoose.Schema({
     billingAddress: {
-        firstName: {type: String, required: true},
-        lastName: {type: String, required: true},
-        streetAddress: {type: String, required: true},
-        city: {type: String, required: true},
-        state: {type: String, required: true},
-        country: {type: String, required: true},
-        zipCode: {type: String, required: true},
+        firstName: {type: String},
+        lastName: {type: String},
+        streetAddress: {type: String},
+        city: {type: String},
+        state: {type: String},
+        country: {type: String},
+        zipCode: {type: String},
     },
     orderItems: 
         [
@@ -33,11 +33,6 @@ const orderDetailsSchema = new mongoose.Schema({
         type: String, required: true, default: "Processing"
     },
     userEmail: {type: String, required: true},
-    paymentInfo: {
-        paymentId: {type: String, required: true},
-        paymentMethod: {type: String, required: true},
-        paymentStatus: {type: String, required: true},
-    },
     itemsAmount: {type: Number, required: true, default:0},
     taxAmount: {type: Number, required: true,default:0},
     paymentAmount: {type: Number, required: true, default:0},

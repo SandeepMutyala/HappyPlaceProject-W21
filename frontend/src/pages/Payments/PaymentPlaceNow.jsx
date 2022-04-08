@@ -106,7 +106,7 @@ let paymentMethodType = "Credit/Debit Card";
         line_items.push(items);
         let data = {
             line_items,
-            "customer_email": "abcd@Dal.ca",
+            "customer_email": userDetails.email,
             "delivery": 10
         };
         let billingAddress;
@@ -152,7 +152,8 @@ let paymentMethodType = "Credit/Debit Card";
         let payload ={
             totalAmount: charges,
             billingAddress,
-            line_items
+            line_items,
+            userEmail: userDetails.email
         };
         
          if(paymentMethodType==='Credit/Debit Card'){
