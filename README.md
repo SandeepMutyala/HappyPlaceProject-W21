@@ -19,6 +19,7 @@
 - [NodeJs](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 - [React-reactions](https://github.com/charkour/react-reactions)
+- [Stripe-API](https://stripe.com/docs/api)
 
 ## Images used from
 
